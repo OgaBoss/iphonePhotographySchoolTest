@@ -3,19 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Modules\API\AchievementService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AchievementsController extends Controller
 {
+    public AchievementService $service;
+
+    /**
+     * @param AchievementService $service
+     */
+    public function __construct(AchievementService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index(User $user): JsonResponse
     {
-        return response()->json([
-            'unlocked_achievements' => [],
-            'next_available_achievements' => [],
-            'current_badge' => '',
-            'next_badge' => '',
-            'remaining_to_unlock_next_badge' => 0
-        ]);
+        try {
+            $this->service->user = $user;
+            return response()->json($this->service->execute());
+        } catch(\Throwable $exception) {
+            return response()->json('error', 500);
+        }
     }
 }

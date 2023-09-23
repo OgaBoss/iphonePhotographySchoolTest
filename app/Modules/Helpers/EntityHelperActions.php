@@ -14,6 +14,7 @@ class EntityHelperActions
     public function previousAchievements(array $achievements, int $count): array
     {
         $values = $this->convertEntitiesToArray($achievements);
+        if ($values[count($values) -  1] <= $count) return $values;
 
         $possibleAchievement = $count;
 
@@ -36,7 +37,7 @@ class EntityHelperActions
     public function nextEntityValue(array $achievements, int $count): int
     {
         $values = $this->convertEntitiesToArray($achievements);
-        if ($values[count($values) -  1] === $count) return -1;
+        if ($values[count($values) -  1] <= $count) return -1;
 
         $possibleAchievement = $count;
 

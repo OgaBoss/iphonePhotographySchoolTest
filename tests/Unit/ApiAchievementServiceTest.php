@@ -9,7 +9,7 @@ use App\Modules\API\AchievementService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ApiAchievementService extends TestCase
+class ApiAchievementServiceTest extends TestCase
 {
     use RefreshDatabase;
 

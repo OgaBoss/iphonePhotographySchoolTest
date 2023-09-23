@@ -50,7 +50,7 @@ class AchievementService
             'next_available_achievements'       => $this->handleNextAvailableAchievement(),
             'current_badge'                     => $this->getCurrentBadge(),
             'next_badge'                        => $this->getNextBadge(),
-            'remaining_to_unlock_next_badge'    => $this->getRemainderToNextBadge()
+            'remaining_to_unlock_next_badge'    => max($this->getRemainderToNextBadge(), 0)
         ];
     }
 
@@ -99,6 +99,8 @@ class AchievementService
     public function getNextBadge(): string
     {
         $response = $this->badgeService->getNextBadge($this->getAchievementCount());
+
+        ray($response);
 
         if ($response === -1) return  '';
 
