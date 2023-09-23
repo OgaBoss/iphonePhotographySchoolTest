@@ -28,7 +28,7 @@ class BadgeService
 
         $this->factory = $factory;
 
-        $this->badges = $this->factory->create(config('badges.badges'));
+        $this->badges = $this->factory->create(config('app.badges'));
     }
 
     public function getAchievements(): array

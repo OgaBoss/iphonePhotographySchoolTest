@@ -93,14 +93,12 @@ class AchievementService
 
     public function getRemainderToNextBadge(): int
     {
-        return $this->badgeService->getNextBadge($this->getAchievementCount())- $this->getAchievementCount();
+        return $this->badgeService->getNextBadge($this->getAchievementCount()) - $this->getAchievementCount();
     }
 
     public function getNextBadge(): string
     {
         $response = $this->badgeService->getNextBadge($this->getAchievementCount());
-
-        ray($response);
 
         if ($response === -1) return  '';
 

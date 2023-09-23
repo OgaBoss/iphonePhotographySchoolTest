@@ -6,7 +6,7 @@ class LessonsService extends AchievementService
 {
     public function init(): void
     {
-        $this->achievements = $this->factory->create(config('achievements.lessons'));
+        $this->achievements = $this->factory->create(config('app.lessons'));
     }
 
     public function generateAchievementName(int $count): string

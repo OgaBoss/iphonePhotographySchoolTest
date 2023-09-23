@@ -26,8 +26,8 @@ class TotalAchievementsCountTest extends TestCase
                 ['watched' => true]
             )->create();
 
-        config()->set('achievements.lessons', [1, 5, 10, 25, 50]);
-        config()->set('achievements.comments', [1, 3, 5, 10, 20]);
+        config()->set('app.lessons', [1, 5, 10, 25, 50]);
+        config()->set('app.comments', [1, 3, 5, 10, 20]);
 
         $this->totalAchievementsCount = app(TotalAchievementsCount::class);
 

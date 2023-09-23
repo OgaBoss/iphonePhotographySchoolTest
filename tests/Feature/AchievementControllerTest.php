@@ -5,18 +5,20 @@ namespace Tests\Feature;
 use App\Models\Comment;
 use App\Models\Lesson;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class AchievementControllerTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        config()->set('achievements.lessons', [1, 5, 10, 25, 50]);
-        config()->set('achievements.comments', [1, 3, 5, 10, 20]);
+        config()->set('app.lessons', [1, 5, 10, 25, 50]);
+        config()->set('app.comments', [1, 3, 5, 10, 20]);
     }
 
     /** @test */
@@ -83,8 +85,6 @@ class AchievementControllerTest extends TestCase
 
 
         $response = $this->getJson("/users/{$user->id}/achievements");
-
-        ray($response);
 
         $response->assertStatus(200)->assertJson(fn (AssertableJson $json) =>
         $json->where('unlocked_achievements', [

@@ -21,8 +21,8 @@ class ApiAchievementServiceTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('achievements.lessons', [1, 5, 10, 25, 50]);
-        config()->set('achievements.comments', [1, 3, 5, 10, 20]);
+        config()->set('app.lessons', [1, 5, 10, 25, 50]);
+        config()->set('app.comments', [1, 3, 5, 10, 20]);
 
         $this->user = User::factory()
             ->has(Comment::factory()->count(4))

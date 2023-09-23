@@ -15,7 +15,7 @@ class AchievementServiceTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('achievements.lessons', $this->array);
+        config()->set('app.lessons', $this->array);
 
         $this->service = app(AchievementService::class);
 

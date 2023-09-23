@@ -39,9 +39,9 @@ class HandleAchievementUnlockedTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('badges.badges', $this->badges);
-        config()->set('achievements.lessons', [1, 5, 10, 25, 50]);
-        config()->set('achievements.comments', [1, 3, 5, 10, 20]);
+        config()->set('app.badges', $this->badges);
+        config()->set('app.lessons', [1, 5, 10, 25, 50]);
+        config()->set('app.comments', [1, 3, 5, 10, 20]);
 
         $this->achievementUnlocked = app(HandleAchievementUnlocked::class);
     }

@@ -185,4 +185,27 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    "lessons"   =>  env('LESSONS', [1, 5,  10, 25, 50]),
+
+    "comments"  =>  env('COMMENTS', [1, 3,  5,  10, 20]),
+
+    "badges"    =>  [
+        [
+            "value" => 0,
+            "title" => "Beginner"
+        ],
+        [
+            "value" => 4,
+            "title" => "Intermediate"
+        ],
+        [
+            "value" => 8,
+            "title" => "Advanced"
+        ],
+        [
+            "value" => 10,
+            "title" => "Master"
+        ]
+    ]
+
 ];

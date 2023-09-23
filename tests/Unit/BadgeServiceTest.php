@@ -57,7 +57,7 @@ class BadgeServiceTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('badges.badges', $this->array);
+        config()->set('app.badges', $this->array);
 
         $this->service = app(BadgeService::class);
     }

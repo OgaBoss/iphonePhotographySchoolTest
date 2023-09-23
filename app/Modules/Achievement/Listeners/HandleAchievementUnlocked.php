@@ -27,8 +27,6 @@ class HandleAchievementUnlocked
     {
         $total = $this->totalAchievementsCount->count($event->user);
 
-        ray($total);
-
         $response = $this->service->hasUnlockedBadge($total);
 
         if ($response) {
