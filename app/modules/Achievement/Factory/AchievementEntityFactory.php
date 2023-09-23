@@ -14,6 +14,7 @@ class AchievementEntityFactory
             $achievements[] = new AchievementEntity($value);
         }
 
+        /** @var AchievementEntity[] */
         return $achievements;
     }
 }
