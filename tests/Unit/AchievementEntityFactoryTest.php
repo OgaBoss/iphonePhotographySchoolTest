@@ -2,8 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\modules\Achievement\Entities\AchievementEntities;
-use App\modules\Achievement\Factory\AchievementEntityFactory;
+use App\modules\Achievement\Factory\LessonAchievementFactory;
 use PHPUnit\Framework\TestCase;
 
 class AchievementEntityFactoryTest extends TestCase
@@ -14,12 +13,37 @@ class AchievementEntityFactoryTest extends TestCase
 
         $array = [1,2,3,4,5];
 
-        $factory = new AchievementEntityFactory();
+        $factory = new LessonAchievementFactory();
 
-        $achievements = new AchievementEntities($factory($array));
+        $achievements = $factory->create($array);
 
-        $this->assertCount(5, $achievements->achievements);
+        $this->assertCount(5, $achievements);
 
-        $this->assertEquals(1, $achievements->achievements[0]->value);
+        $this->assertEquals(1, $achievements[0]->value);
+    }
+
+    /** @test */
+    public function should_be_able_to_add_more_achievement()
+    {
+        $array = [1,2,3,4,5];
+
+        $factory = new LessonAchievementFactory();
+
+        $achievements = $factory->insert($factory->create($array), 6);
+
+        $this->assertCount(6, $achievements);
+    }
+
+    /** @test */
+    public function should_be_able_to_add_more_achievement_in_order()
+    {
+        $array = [1,2,3,4,6];
+
+        $factory = new LessonAchievementFactory();
+
+        $achievements = $factory->insert($factory->create($array), 5);
+
+        $this->assertCount(6, $achievements);
+        $this->assertEquals(5, $achievements[4]->value);
     }
 }
