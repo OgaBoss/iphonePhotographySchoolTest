@@ -7,7 +7,6 @@ use App\modules\Achievement\Actions\LessonWatchedCount;
 use App\modules\Achievement\Actions\TotalAchievementsCount;
 use App\modules\Achievement\Events\AchievementUnlocked;
 use App\modules\Achievement\Services\LessonsService;
-use App\modules\Badge\Events\BadgeUnlocked;
 
 class HandleLessonWatched
 {
@@ -45,7 +44,7 @@ class HandleLessonWatched
 
         if ($response) {
             // Dispatch Achievement Unlocked Event
-            AchievementUnlocked::dispatch($this->service->generateAchievementName($count));
+            AchievementUnlocked::dispatch($this->service->generateAchievementName($count), $event->user);
         }
     }
 }

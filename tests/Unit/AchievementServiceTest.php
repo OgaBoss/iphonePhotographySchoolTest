@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\modules\Achievement\Factory\AchievementsFactory;
+use App\modules\Achievement\Services\AchievementService;
 use App\modules\Achievement\Services\LessonsService;
 use App\modules\Helpers\EntityHelperActions;
 use Mockery\MockInterface;
@@ -10,7 +11,7 @@ use Tests\TestCase;
 
 class AchievementServiceTest extends TestCase
 {
-    public LessonsService $service;
+    public AchievementService $service;
 
     public array $array =  [1, 2, 3, 4, 5];
 
@@ -18,7 +19,7 @@ class AchievementServiceTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('achievements.lessons', $this->array);
+        config()->set('achievements.achievements', $this->array);
 
         /** @var AchievementsFactory $factoryMock */
         $factoryMock = $this->mock(AchievementsFactory::class, function(MockInterface $mock) {
@@ -50,7 +51,7 @@ class AchievementServiceTest extends TestCase
                 ->andReturn($this->array);
         });
 
-        $this->service = new LessonsService($factoryMock, $actionMock);
+        $this->service = new AchievementService($factoryMock, $actionMock);
 
         $this->service->init();
     }
@@ -102,14 +103,6 @@ class AchievementServiceTest extends TestCase
         $response = $this->service->hasUnlockedAchievement(2);
 
         $this->assertTrue($response);
-    }
-
-    /** @test */
-    public function generate_achievement_name()
-    {
-        $response = $this->service->generateAchievementName(10);
-
-        $this->assertEquals('10 Lessons Watched', $response);
     }
 
     /** @test */

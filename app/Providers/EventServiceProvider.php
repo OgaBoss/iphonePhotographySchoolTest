@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\LessonWatched;
 use App\modules\Achievement\Events\AchievementUnlocked;
+use App\modules\Achievement\Listeners\AchievementUnlockedListeners;
 use App\modules\Achievement\Listeners\HandleLessonWatched;
 use App\modules\Badge\Events\BadgeUnlocked;
 use Illuminate\Auth\Events\Registered;
@@ -36,7 +37,7 @@ class EventServiceProvider extends ServiceProvider
 
         Event::listen(
             AchievementUnlocked::class,
-            []
+            [AchievementUnlockedListeners::class, 'handle']
         );
 
         Event::listen(

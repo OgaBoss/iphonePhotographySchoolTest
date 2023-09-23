@@ -7,7 +7,7 @@ use App\modules\Achievement\Interfaces\IAchievementActions;
 use App\modules\Helpers\EntityHelperActions;
 use App\modules\Shared\Entities\ActionEntity;
 
-abstract class AchievementService implements IAchievementActions
+class AchievementService implements IAchievementActions
 {
     /** @var ActionEntity[] $achievements */
     public array $achievements;
@@ -31,6 +31,11 @@ abstract class AchievementService implements IAchievementActions
         $this->factory = $factory;
 
         $this->actions = $actions;
+    }
+
+    public function init(): void
+    {
+        $this->achievements = $this->factory->create(config('achievements.achievements'));
     }
 
     public function getAchievements(): array
