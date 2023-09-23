@@ -59,4 +59,11 @@ abstract class AchievementService implements IAchievementActions
 
         return in_array($count, $values);
     }
+
+    public function totalAchievement(int $count): int
+    {
+        $values = $this->getPreviousAchievements($count);
+
+        return count($values);
+    }
 }

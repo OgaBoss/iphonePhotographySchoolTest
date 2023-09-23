@@ -16,4 +16,6 @@ interface IAchievementActions
     public function hasUnlockedAchievement(int $count): bool;
 
     public function generateAchievementName(int $count): string;
+
+    public function totalAchievement(int $count): int;
 }

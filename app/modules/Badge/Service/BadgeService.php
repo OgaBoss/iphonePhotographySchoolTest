@@ -22,7 +22,7 @@ class BadgeService
      * @param EntityHelperActions $actions
      * @param BadgeFactory $factory
      */
-    public function __construct(EntityHelperActions $actions, BadgeFactory $factory)
+    public function __construct(BadgeFactory $factory, EntityHelperActions $actions)
     {
         $this->actions = $actions;
 

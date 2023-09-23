@@ -21,6 +21,6 @@ class CommentsWrittenCountTest extends TestCase
 
         $count = new CommentsWrittenCount();
 
-        $this->assertEquals(4, $count($user));
+        $this->assertEquals(4, $count->count($user));
     }
 }

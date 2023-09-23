@@ -4,6 +4,7 @@ namespace App\modules\Achievement\Listeners;
 
 use App\Events\LessonWatched;
 use App\modules\Achievement\Actions\LessonWatchedCount;
+use App\modules\Achievement\Actions\TotalAchievementsCount;
 use App\modules\Achievement\Events\AchievementUnlocked;
 use App\modules\Achievement\Services\LessonsService;
 use App\modules\Badge\Events\BadgeUnlocked;
@@ -14,15 +15,24 @@ class HandleLessonWatched
 
     public LessonsService $service;
 
+    public TotalAchievementsCount $totalAchievementsCount;
+
     /**
      * @param LessonWatchedCount $lessonWatchedCount
      * @param LessonsService $service
+     * @param TotalAchievementsCount $totalAchievementsCount
      */
-    public function __construct(LessonWatchedCount $lessonWatchedCount, LessonsService $service)
+    public function __construct(
+        LessonWatchedCount $lessonWatchedCount,
+        LessonsService $service,
+        TotalAchievementsCount $totalAchievementsCount
+    )
     {
         $this->lessonWatchedCount = $lessonWatchedCount;
         $this->service = $service;
+        $this->totalAchievementsCount = $totalAchievementsCount;
     }
+
 
     public function handle(LessonWatched $event): void
     {
@@ -36,9 +46,6 @@ class HandleLessonWatched
         if ($response) {
             // Dispatch Achievement Unlocked Event
             AchievementUnlocked::dispatch($this->service->generateAchievementName($count));
-
-            // Dispatch Badge Event
-//            BadgeUnlocked::dispatch()
         }
     }
 }

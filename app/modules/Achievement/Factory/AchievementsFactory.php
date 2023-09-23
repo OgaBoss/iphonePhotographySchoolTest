@@ -42,7 +42,7 @@ class AchievementsFactory
         }
 
         foreach ($achievements as $key => $entity) {
-            if ($entity->value > $count &&  $achievements[$key + 1] < $count) {
+            if ($entity->value > $count && $achievements[$key + 1] < $count) {
                 array_splice($achievements, $key, 0, [$achievement]);
                 return $achievements;
             }
