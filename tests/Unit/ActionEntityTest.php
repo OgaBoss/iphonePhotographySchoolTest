@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\modules\Shared\Entities\ActionEntity;
+use App\Modules\Shared\Entities\ActionEntity;
 use PHPUnit\Framework\TestCase;
 
 class ActionEntityTest extends TestCase

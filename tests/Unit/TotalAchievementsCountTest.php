@@ -5,16 +5,19 @@ namespace Tests\Unit;
 use App\Models\Comment;
 use App\Models\Lesson;
 use App\Models\User;
-use App\modules\Achievement\Actions\CommentsWrittenCount;
-use App\modules\Achievement\Actions\LessonWatchedCount;
-use App\modules\Achievement\Actions\TotalAchievementsCount;
-use App\modules\Achievement\Services\AchievementService;
+use App\Modules\Achievement\Actions\CommentsWrittenCount;
+use App\Modules\Achievement\Actions\LessonWatchedCount;
+use App\Modules\Achievement\Actions\TotalAchievementsCount;
+use App\Modules\Achievement\Services\AchievementService;
+use App\Modules\Achievement\Services\CommentsService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
 class TotalAchievementsCountTest extends TestCase
 {
+    public TotalAchievementsCount $totalAchievementsCount;
+
     use RefreshDatabase;
     /** @test */
     public function can_get_total_Achievement_count()
@@ -26,38 +29,13 @@ class TotalAchievementsCountTest extends TestCase
             ->hasAttached(
                 Lesson::factory()->count(4),
                 ['watched' => true]
-            )
-            ->hasAttached(
-                Lesson::factory()->count(1),
-                ['watched' => false]
             )->create();
 
-        /** @var LessonWatchedCount $lessonMock */
-        $lessonMock = $this->mock(LessonWatchedCount::class, function(MockInterface $mock) use ($user) {
-            $mock
-                ->shouldReceive('count')
-                ->with($user)
-                ->andReturn(4);
-        });
+        config()->set('achievements.lessons', [1, 5, 10, 25, 50]);
+        config()->set('achievements.comments', [1, 3, 5, 10, 20]);
 
-        /** @var CommentsWrittenCount $commentsMock */
-        $commentsMock = $this->mock(CommentsWrittenCount::class, function(MockInterface $mock) use ($user) {
-            $mock
-                ->shouldReceive('count')
-                ->with($user)
-                ->andReturn(4);
-        });
+        $this->totalAchievementsCount = app(TotalAchievementsCount::class);
 
-        /** @var AchievementService $serviceMock */
-        $serviceMock = $this->mock(AchievementService::class, function(MockInterface $mock) use ($user) {
-            $mock
-                ->shouldReceive('totalAchievement')
-                ->with(4)
-                ->andReturn(4);
-        });
-
-        $totalAction = new TotalAchievementsCount($serviceMock, $lessonMock, $commentsMock);
-
-        $this->assertEquals(8, $totalAction->count($user));
+        $this->assertEquals(3, $this->totalAchievementsCount->count($user));
     }
 }

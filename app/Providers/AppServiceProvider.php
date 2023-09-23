@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\modules\Achievement\Interfaces\IAchievementActions;
-use App\modules\Achievement\Services\AchievementService;
+use App\Modules\Achievement\Interfaces\IAchievementActions;
+use App\Modules\Achievement\Services\AchievementService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

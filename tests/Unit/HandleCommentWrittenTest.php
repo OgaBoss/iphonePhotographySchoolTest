@@ -7,8 +7,8 @@ use App\Events\LessonWatched;
 use App\Models\Comment;
 use App\Models\Lesson;
 use App\Models\User;
-use App\modules\Achievement\Events\AchievementUnlocked;
-use App\modules\Achievement\Listeners\HandleCommentWritten;
+use App\Modules\Achievement\Events\AchievementUnlocked;
+use App\Modules\Achievement\Listeners\HandleCommentWritten;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 

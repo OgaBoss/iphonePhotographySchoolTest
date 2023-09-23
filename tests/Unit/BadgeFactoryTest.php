@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\modules\Badge\Factory\BadgeFactory;
+use App\Modules\Badge\Factory\BadgeFactory;
 use Tests\TestCase;
 
 class BadgeFactoryTest extends TestCase

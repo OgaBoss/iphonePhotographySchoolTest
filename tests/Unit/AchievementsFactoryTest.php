@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\modules\Achievement\Factory\AchievementsFactory;
+use App\Modules\Achievement\Factory\AchievementsFactory;
 use PHPUnit\Framework\TestCase;
 
 class AchievementsFactoryTest extends TestCase

@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use App\modules\Achievement\Factory\AchievementsFactory;
-use App\modules\Achievement\Services\AchievementService;
-use App\modules\Achievement\Services\LessonsService;
-use App\modules\Helpers\EntityHelperActions;
+use App\Modules\Achievement\Factory\AchievementsFactory;
+use App\Modules\Achievement\Services\AchievementService;
+use App\Modules\Achievement\Services\LessonsService;
+use App\Modules\Helpers\EntityHelperActions;
 use Mockery\MockInterface;
 use Tests\TestCase;
 

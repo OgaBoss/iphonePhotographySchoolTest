@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Events\LessonWatched;
-use App\modules\Achievement\Events\AchievementUnlocked;
-use App\modules\Achievement\Listeners\HandleAchievementUnlocked;
-use App\modules\Achievement\Listeners\HandleLessonWatched;
-use App\modules\Badge\Events\BadgeUnlocked;
+use App\Modules\Achievement\Events\AchievementUnlocked;
+use App\Modules\Achievement\Listeners\HandleAchievementUnlocked;
+use App\Modules\Achievement\Listeners\HandleLessonWatched;
+use App\Modules\Badge\Events\BadgeUnlocked;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

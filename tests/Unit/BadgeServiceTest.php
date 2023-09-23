@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\modules\Badge\Factory\BadgeFactory;
-use App\modules\Badge\Service\BadgeService;
-use App\modules\Helpers\EntityHelperActions;
+use App\Modules\Badge\Factory\BadgeFactory;
+use App\Modules\Badge\Service\BadgeService;
+use App\Modules\Helpers\EntityHelperActions;
 use Mockery\MockInterface;
 use Tests\TestCase;
 

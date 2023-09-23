@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Comment;
 use App\Models\User;
-use App\modules\Achievement\Actions\CommentsWrittenCount;
+use App\Modules\Achievement\Actions\CommentsWrittenCount;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

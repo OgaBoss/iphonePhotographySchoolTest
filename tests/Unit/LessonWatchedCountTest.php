@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Lesson;
 use App\Models\User;
-use App\modules\Achievement\Actions\LessonWatchedCount;
+use App\Modules\Achievement\Actions\LessonWatchedCount;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

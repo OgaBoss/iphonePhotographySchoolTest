@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\modules\Achievement\Factory\AchievementsFactory;
-use App\modules\Badge\Factory\BadgeFactory;
-use App\modules\Helpers\EntityHelperActions;
+use App\Modules\Achievement\Factory\AchievementsFactory;
+use App\Modules\Badge\Factory\BadgeFactory;
+use App\Modules\Helpers\EntityHelperActions;
 use Tests\TestCase;
 
 class EntityHelperActionTest extends TestCase

@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\modules\Achievement\Factory\AchievementsFactory;
-use App\modules\Badge\Factory\BadgeFactory;
+use App\Modules\Achievement\Factory\AchievementsFactory;
+use App\Modules\Badge\Factory\BadgeFactory;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
