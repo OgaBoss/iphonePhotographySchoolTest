@@ -19,7 +19,7 @@ class AchievementServiceTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('achievements.achievements', $this->array);
+        config()->set('achievements.lessons', $this->array);
 
         /** @var AchievementsFactory $factoryMock */
         $factoryMock = $this->mock(AchievementsFactory::class, function(MockInterface $mock) {
@@ -51,7 +51,7 @@ class AchievementServiceTest extends TestCase
                 ->andReturn($this->array);
         });
 
-        $this->service = new AchievementService($factoryMock, $actionMock);
+        $this->service = new LessonsService($factoryMock, $actionMock);
 
         $this->service->init();
     }

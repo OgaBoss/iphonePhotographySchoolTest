@@ -7,9 +7,8 @@ use App\modules\Achievement\Events\AchievementUnlocked;
 use App\modules\Badge\Events\BadgeUnlocked;
 use App\modules\Badge\Service\BadgeService;
 
-class AchievementUnlockedListeners
+class HandleAchievementUnlocked
 {
-
     public TotalAchievementsCount $totalAchievementsCount;
 
     public BadgeService $service;
@@ -27,6 +26,8 @@ class AchievementUnlockedListeners
     public function handle(AchievementUnlocked $event): void
     {
         $total = $this->totalAchievementsCount->count($event->user);
+
+        ray($total);
 
         $response = $this->service->hasUnlockedBadge($total);
 

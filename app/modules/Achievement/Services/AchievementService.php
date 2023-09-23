@@ -33,11 +33,6 @@ class AchievementService implements IAchievementActions
         $this->actions = $actions;
     }
 
-    public function init(): void
-    {
-        $this->achievements = $this->factory->create(config('achievements.achievements'));
-    }
-
     public function getAchievements(): array
     {
         return $this->achievements;

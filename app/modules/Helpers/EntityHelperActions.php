@@ -22,7 +22,7 @@ class EntityHelperActions
         }
 
         $index = array_search($possibleAchievement, $values);
-        if(!$index) return [];
+        if($index === false) return [];
 
         return array_slice($values, 0, $index + 1);
     }
@@ -106,7 +106,6 @@ class EntityHelperActions
                 break;
             }
         }
-
 
         return $possibleAchievement;
     }

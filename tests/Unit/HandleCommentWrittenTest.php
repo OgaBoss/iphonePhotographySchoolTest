@@ -21,7 +21,7 @@ class HandleCommentWrittenTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('achievements.achievements', $this->array);
+        config()->set('achievements.comments', $this->array);
 
         $this->commentWritten = app(HandleCommentWritten::class);
     }
