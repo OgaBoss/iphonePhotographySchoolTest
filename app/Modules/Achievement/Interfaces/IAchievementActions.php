@@ -4,7 +4,6 @@ namespace App\Modules\Achievement\Interfaces;
 
 interface IAchievementActions
 {
-    // public function init(): void;
     public function getAchievements(): array;
 
     public function setAchievements(int $count): void;
