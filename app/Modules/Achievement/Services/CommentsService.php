@@ -11,6 +11,10 @@ class CommentsService extends AchievementService
         $this->achievements = $this->factory->create(Config::get('app.comments'));
     }
 
+    /**
+     * @param int $count
+     * @return string
+     */
     public function generateAchievementName(int $count): string
     {
         if ($count === 1) return 'First Comment Written';

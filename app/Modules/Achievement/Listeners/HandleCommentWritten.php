@@ -10,10 +10,13 @@ use App\Modules\Achievement\Services\CommentsService;
 
 class HandleCommentWritten
 {
+    /** @var CommentsWrittenCount $writtenCount */
     public CommentsWrittenCount $writtenCount;
 
+    /** @var CommentsService  $service*/
     public CommentsService $service;
 
+    /** @var TotalAchievementsCount  $totalAchievementsCount*/
     public TotalAchievementsCount $totalAchievementsCount;
 
     /**
@@ -31,7 +34,10 @@ class HandleCommentWritten
         $this->totalAchievementsCount = $totalAchievementsCount;
     }
 
-
+    /**
+     * @param CommentWritten $event
+     * @return void
+     */
     public function handle(CommentWritten $event): void
     {
         // Get watched video account

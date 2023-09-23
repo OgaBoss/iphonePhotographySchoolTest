@@ -10,14 +10,25 @@ use App\Modules\Badge\Service\BadgeService;
 
 class AchievementService
 {
+    /**
+     * @var User
+     */
     public User $user;
-
+    /**
+     * @var TotalAchievementsCount
+     */
     public TotalAchievementsCount $totalCount;
-
+    /**
+     * @var CommentsService
+     */
     public CommentsService $commentsService;
-
+    /**
+     * @var LessonsService
+     */
     public LessonsService $lessonsService;
-
+    /**
+     * @var BadgeService
+     */
     public BadgeService $badgeService;
 
     /**
@@ -42,7 +53,9 @@ class AchievementService
         $this->lessonsService->init();
     }
 
-
+    /**
+     * @return array
+     */
     public function execute(): array
     {
         return [
@@ -54,6 +67,9 @@ class AchievementService
         ];
     }
 
+    /**
+     * @return array
+     */
     public function handleUnlockedAchievement(): array
     {
         $lessons = $this->getUnlockedLessonsAchievements();
@@ -72,6 +88,9 @@ class AchievementService
         return $names;
     }
 
+    /**
+     * @return array
+     */
     public function handleNextAvailableAchievement(): array
     {
         $lessons = $this->getNextAvailableLessonAchievement();
@@ -87,15 +106,20 @@ class AchievementService
             $names[] = $this->generateCommentAchievementName($comments);
         }
 
-
         return $names;
     }
 
+    /**
+     * @return int
+     */
     public function getRemainderToNextBadge(): int
     {
         return $this->badgeService->getNextBadge($this->getAchievementCount()) - $this->getAchievementCount();
     }
 
+    /**
+     * @return string
+     */
     public function getNextBadge(): string
     {
         $response = $this->badgeService->getNextBadge($this->getAchievementCount());
@@ -105,6 +129,9 @@ class AchievementService
         return $this->badgeService->generateBadgeName($response);
     }
 
+    /**
+     * @return string
+     */
     public function getCurrentBadge(): string
     {
         $response = $this->badgeService->getCurrentBadge($this->getAchievementCount());
@@ -114,6 +141,9 @@ class AchievementService
         return $this->badgeService->generateBadgeName($response);
     }
 
+    /**
+     * @return int
+     */
     public function getNextAvailableCommentAchievement(): int
     {
         return $this
@@ -121,6 +151,9 @@ class AchievementService
             ->getNextAchievement($this->totalCount->totalCommentAchievementCount($this->user));
     }
 
+    /**
+     * @return int
+     */
     public function getNextAvailableLessonAchievement(): int
     {
         return $this
@@ -128,6 +161,9 @@ class AchievementService
             ->getNextAchievement($this->totalCount->totalLessonsAchievementCount($this->user));
     }
 
+    /**
+     * @return array
+     */
     public function getUnlockedCommentAchievements(): array
     {
         return $this
@@ -135,6 +171,9 @@ class AchievementService
             ->getPreviousAchievements($this->totalCount->totalCommentAchievementCount($this->user));
     }
 
+    /**
+     * @return array
+     */
     public function getUnlockedLessonsAchievements(): array
     {
         return $this
@@ -142,16 +181,27 @@ class AchievementService
             ->getPreviousAchievements($this->totalCount->totalLessonsAchievementCount($this->user));
     }
 
+    /**
+     * @return int
+     */
     public function getAchievementCount(): int
     {
         return $this->totalCount->count($this->user);
     }
 
+    /**
+     * @param int $value
+     * @return string
+     */
     private function generateCommentAchievementName(int $value): string
     {
         return $this->commentsService->generateAchievementName($value);
     }
 
+    /**
+     * @param int $value
+     * @return string
+     */
     private function generateLessonsAchievementName(int $value): string
     {
         return $this->lessonsService->generateAchievementName($value);

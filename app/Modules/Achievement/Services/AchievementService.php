@@ -33,26 +33,45 @@ class AchievementService implements IAchievementActions
         $this->actions = $actions;
     }
 
+    /**
+     * @return ActionEntity[]
+     */
     public function getAchievements(): array
     {
         return $this->achievements;
     }
 
+    /**
+     * @param int $count
+     * @return void
+     */
     public function setAchievements(int $count): void
     {
         $this->achievements = $this->factory->insert($this->achievements, $count);
     }
 
+    /**
+     * @param int $count
+     * @return array
+     */
     public function getPreviousAchievements(int $count): array
     {
         return $this->actions->previousAchievements($this->achievements, $count);
     }
 
+    /**
+     * @param int $count
+     * @return int
+     */
     public function getNextAchievement(int $count): int
     {
         return $this->actions->nextEntityValue($this->achievements, $count);
     }
 
+    /**
+     * @param int $count
+     * @return bool
+     */
     public function hasUnlockedAchievement(int $count): bool
     {
         $values = $this->actions->convertEntitiesToArray($this->achievements);
@@ -60,6 +79,10 @@ class AchievementService implements IAchievementActions
         return in_array($count, $values);
     }
 
+    /**
+     * @param int $count
+     * @return int
+     */
     public function totalAchievement(int $count): int
     {
         $values = $this->getPreviousAchievements($count);

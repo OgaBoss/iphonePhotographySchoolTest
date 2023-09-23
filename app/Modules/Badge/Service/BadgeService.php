@@ -31,16 +31,27 @@ class BadgeService
         $this->badges = $this->factory->create(config('app.badges'));
     }
 
+    /**
+     * @return ActionEntity[]
+     */
     public function getAchievements(): array
     {
         return $this->badges;
     }
 
+    /**
+     * @param array $newBadge
+     * @return void
+     */
     public function setAchievements(array $newBadge): void
     {
         $this->badges = $this->factory->insert($this->badges, $newBadge);
     }
 
+    /**
+     * @param int $count
+     * @return bool
+     */
     public function hasUnlockedBadge(int $count): bool
     {
         $values = $this->actions->convertEntitiesToArray($this->badges);
@@ -48,11 +59,19 @@ class BadgeService
         return in_array($count, $values);
     }
 
+    /**
+     * @param int $count
+     * @return int
+     */
     public function getNextBadge(int $count): int
     {
         return $this->actions->nextEntityValue($this->badges, $count);
     }
 
+    /**
+     * @param int $count
+     * @return int
+     */
     public function getCurrentBadge(int $count): int
     {
         $response =  $this->actions->currentEntityValue($this->badges, $count);
@@ -60,6 +79,10 @@ class BadgeService
         return max($response, 0);
     }
 
+    /**
+     * @param int $count
+     * @return string
+     */
     public function generateBadgeName(int $count): string
     {
         foreach ($this->badges as $badge) {

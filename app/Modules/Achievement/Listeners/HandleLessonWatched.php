@@ -10,10 +10,13 @@ use App\Modules\Achievement\Services\LessonsService;
 
 class HandleLessonWatched
 {
+    /** @var LessonWatchedCount $lessonWatchedCount */
     public LessonWatchedCount $lessonWatchedCount;
 
+    /** @var LessonsService  $service*/
     public LessonsService $service;
 
+    /** @var TotalAchievementsCount $totalAchievementsCount */
     public TotalAchievementsCount $totalAchievementsCount;
 
     /**
@@ -32,7 +35,10 @@ class HandleLessonWatched
         $this->totalAchievementsCount = $totalAchievementsCount;
     }
 
-
+    /**
+     * @param LessonWatched $event
+     * @return void
+     */
     public function handle(LessonWatched $event): void
     {
         // Get watched video account

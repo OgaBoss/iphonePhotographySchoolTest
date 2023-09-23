@@ -9,8 +9,10 @@ use App\Modules\Badge\Service\BadgeService;
 
 class HandleAchievementUnlocked
 {
+    /** @var TotalAchievementsCount $totalAchievementsCount */
     public TotalAchievementsCount $totalAchievementsCount;
 
+    /** @var BadgeService $service */
     public BadgeService $service;
 
     /**
@@ -23,6 +25,10 @@ class HandleAchievementUnlocked
         $this->service = $service;
     }
 
+    /**
+     * @param AchievementUnlocked $event
+     * @return void
+     */
     public function handle(AchievementUnlocked $event): void
     {
         $total = $this->totalAchievementsCount->count($event->user);

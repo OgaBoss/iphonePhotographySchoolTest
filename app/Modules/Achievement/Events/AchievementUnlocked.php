@@ -11,8 +11,10 @@ class AchievementUnlocked
 
     use Dispatchable, SerializesModels;
 
+    /** @var string  */
     public string $achievementName;
 
+    /** @var User  */
     public User $user;
 
     /**

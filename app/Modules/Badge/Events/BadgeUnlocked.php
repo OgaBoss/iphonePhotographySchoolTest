@@ -10,8 +10,10 @@ class BadgeUnlocked
 {
     use Dispatchable, SerializesModels;
 
+    /** @var string  */
     public string $badgeName;
 
+    /** @var User  */
     public User $user;
 
     /**
