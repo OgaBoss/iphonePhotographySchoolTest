@@ -6,7 +6,7 @@ use App\Models\User;
 
 class LessonWatchedCount
 {
-    public function __invoke(User $user): int
+    public function count(User $user): int
     {
         return $user->lessons()->where('watched', true)->count();
     }

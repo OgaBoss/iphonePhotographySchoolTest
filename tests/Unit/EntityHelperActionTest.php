@@ -2,7 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\modules\Achievement\Factory\LessonAchievementFactory;
+use App\modules\Achievement\Factory\AchievementsFactory;
+use App\modules\Badge\Factory\BadgeFactory;
 use App\modules\Helpers\EntityHelperActions;
 use Tests\TestCase;
 
@@ -13,7 +14,7 @@ class EntityHelperActionTest extends TestCase
     {
         $array = [1, 2, 5, 10, 12];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $helper = new EntityHelperActions();
 
@@ -27,7 +28,7 @@ class EntityHelperActionTest extends TestCase
     {
         $array = [1, 2, 5, 10, 12];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $helper = new EntityHelperActions();
 
@@ -42,11 +43,11 @@ class EntityHelperActionTest extends TestCase
     {
         $array = [1,2,5,10,12];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $helper = new EntityHelperActions();
 
-        $achievements = $helper->nextAchievement($factory->create($array), 10);
+        $achievements = $helper->nextEntityValue($factory->create($array), 10);
 
         $this->assertEquals(12, $achievements);
     }
@@ -56,11 +57,11 @@ class EntityHelperActionTest extends TestCase
     {
         $array = [1, 2, 5, 10, 12];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $helper = new EntityHelperActions();
 
-        $achievements = $helper->nextAchievement($factory->create($array), 6);
+        $achievements = $helper->nextEntityValue($factory->create($array), 6);
 
         $this->assertEquals(10, $achievements);
     }
@@ -70,12 +71,43 @@ class EntityHelperActionTest extends TestCase
     {
         $array = [1,2,5,10,12];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $helper = new EntityHelperActions();
 
-        $achievements = $helper->nextAchievement($factory->create($array), 12);
+        $achievements = $helper->nextEntityValue($factory->create($array), 12);
 
         $this->assertEquals(-1, $achievements);
+    }
+
+    /** @test */
+    public function should_return_current_entity_value()
+    {
+        $badges = [
+            [
+                "value" => 0,
+                "title" => "Beginner"
+            ],
+            [
+                "value" => 4,
+                "title" => "Intermediate"
+            ],
+            [
+                "value" => 8,
+                "title" => "Advanced"
+            ],
+            [
+                "value" => 10,
+                "title" => "Master"
+            ]
+        ];
+
+        $factory = new BadgeFactory();
+
+        $helper = new EntityHelperActions();
+
+        $achievements = $helper->currentEntityValue($factory->create($badges), 3);
+
+        $this->assertEquals(0, $achievements);
     }
 }

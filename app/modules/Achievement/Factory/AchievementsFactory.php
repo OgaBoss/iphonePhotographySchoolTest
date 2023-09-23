@@ -4,7 +4,7 @@ namespace App\modules\Achievement\Factory;
 
 use App\modules\Shared\Entities\ActionEntity;
 
-class LessonAchievementFactory
+class AchievementsFactory
 {
     /**
      * @param array $achievementValues

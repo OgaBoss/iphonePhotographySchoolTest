@@ -26,6 +26,6 @@ class LessonWatchedCountTest extends TestCase
 
         $count = new LessonWatchedCount();
 
-        $this->assertEquals(4, $count($user));
+        $this->assertEquals(4, $count->count($user));
     }
 }

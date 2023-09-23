@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use App\modules\Achievement\Factory\LessonAchievementFactory;
+use App\modules\Achievement\Factory\AchievementsFactory;
 use PHPUnit\Framework\TestCase;
 
-class AchievementEntityFactoryTest extends TestCase
+class AchievementsFactoryTest extends TestCase
 {
     /** @test */
     public function should_be_able_to_create_entities_from_array()
@@ -13,7 +13,7 @@ class AchievementEntityFactoryTest extends TestCase
 
         $array = [1,2,3,4,5];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $achievements = $factory->create($array);
 
@@ -27,7 +27,7 @@ class AchievementEntityFactoryTest extends TestCase
     {
         $array = [1,2,3,4,5];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $achievements = $factory->insert($factory->create($array), 6);
 
@@ -39,7 +39,7 @@ class AchievementEntityFactoryTest extends TestCase
     {
         $array = [1,2,3,4,6];
 
-        $factory = new LessonAchievementFactory();
+        $factory = new AchievementsFactory();
 
         $achievements = $factory->insert($factory->create($array), 5);
 

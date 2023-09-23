@@ -19,7 +19,7 @@ class EntityHelperActions
 
         if (!in_array($count, $values)){
             $possibleAchievement = $this->checkForPossibleAchievement($values, $count);
-        };
+        }
 
         $index = array_search($possibleAchievement, $values);
         if(!$index) return [];
@@ -29,28 +29,48 @@ class EntityHelperActions
 
 
     /**
-     * @param array $achievements
+     * @param ActionEntity[] $achievements
      * @param int $count
      * @return int
      */
-    public function nextAchievement(array $achievements, int $count): int
+    public function nextEntityValue(array $achievements, int $count): int
     {
         $values = $this->convertEntitiesToArray($achievements);
         if ($values[count($values) -  1] === $count) return -1;
 
         $possibleAchievement = $count;
-        $countInValues = true;
 
         if (!in_array($count, $values)){
-            $countInValues = false;
             $possibleAchievement = $this->checkForPossibleAchievement($values, $count);
-        };
+        }
 
         if ($possibleAchievement < 0) return $possibleAchievement;
 
         $index = array_search($possibleAchievement, $values);
 
-        $index = $countInValues ? $index + 1 : $index;
+        return $values[$index + 1];
+    }
+
+    /**
+     * @param ActionEntity[] $achievements
+     * @param int $count
+     * @return int
+     */
+    public function currentEntityValue(array $achievements, int $count): int
+    {
+        $values = $this->convertEntitiesToArray($achievements);
+
+
+        $possibleAchievement = $count;
+
+        if (!in_array($count, $values)){
+            $possibleAchievement = $this->checkForPossibleAchievement($values, $count);
+        }
+
+        if ($possibleAchievement < 0) return $possibleAchievement;
+
+        $index = array_search($possibleAchievement, $values);
+
         return $values[$index];
     }
 
@@ -83,8 +103,10 @@ class EntityHelperActions
         foreach ($achievements as $key => $achievement) {
             if ($achievement > $count) {
                 $possibleAchievement = $achievements[$key - 1];
+                break;
             }
         }
+
 
         return $possibleAchievement;
     }
