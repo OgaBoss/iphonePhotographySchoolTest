@@ -19,7 +19,8 @@ class HandleLessonWatchedTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('achievements.lessons', $this->array);
+        config()->set('achievements.lessons', [1, 5, 10, 25, 50]);
+        config()->set('achievements.comments', [1, 3, 5, 10, 20]);
 
         $this->lessonWatched = app(HandleLessonWatched::class);
     }

@@ -5,13 +5,8 @@ namespace Tests\Unit;
 use App\Models\Comment;
 use App\Models\Lesson;
 use App\Models\User;
-use App\Modules\Achievement\Actions\CommentsWrittenCount;
-use App\Modules\Achievement\Actions\LessonWatchedCount;
 use App\Modules\Achievement\Actions\TotalAchievementsCount;
-use App\Modules\Achievement\Services\AchievementService;
-use App\Modules\Achievement\Services\CommentsService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mockery\MockInterface;
 use Tests\TestCase;
 
 class TotalAchievementsCountTest extends TestCase

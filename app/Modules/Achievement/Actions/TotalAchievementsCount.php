@@ -37,10 +37,33 @@ class TotalAchievementsCount
     $this->lessonsService->init();
 }
 
+    /**
+     * @param User $user
+     * @return int
+     */
+
+    public function totalCommentAchievementCount(User $user): int
+    {
+        return $this->writtenCount->count($user);
+    }
+
+    /**
+     * @param User $user
+     * @return int
+     */
+    public function totalLessonsAchievementCount(User $user): int
+    {
+        return $this->watchedCount->count($user);
+    }
+
+    /**
+     * @param User $user
+     * @return int
+     */
     public function count(User $user): int
     {
-        $lessonCounts = $this->lessonsService->totalAchievement($this->watchedCount->count($user));
-        $commentsCounts = $this->commentsService->totalAchievement($this->writtenCount->count($user));
+        $lessonCounts = $this->lessonsService->totalAchievement($this->totalLessonsAchievementCount($user));
+        $commentsCounts = $this->commentsService->totalAchievement($this->totalCommentAchievementCount($user));
 
        return $lessonCounts + $commentsCounts;
     }

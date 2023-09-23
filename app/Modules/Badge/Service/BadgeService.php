@@ -55,7 +55,9 @@ class BadgeService
 
     public function getCurrentBadge(int $count): int
     {
-        return $this->actions->currentEntityValue($this->badges, $count);
+        $response =  $this->actions->currentEntityValue($this->badges, $count);
+
+        return max($response, 0);
     }
 
     public function generateBadgeName(int $count): string

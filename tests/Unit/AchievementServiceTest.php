@@ -2,11 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Modules\Achievement\Factory\AchievementsFactory;
 use App\Modules\Achievement\Services\AchievementService;
-use App\Modules\Achievement\Services\LessonsService;
-use App\Modules\Helpers\EntityHelperActions;
-use Mockery\MockInterface;
 use Tests\TestCase;
 
 class AchievementServiceTest extends TestCase
@@ -21,39 +17,9 @@ class AchievementServiceTest extends TestCase
 
         config()->set('achievements.lessons', $this->array);
 
-        /** @var AchievementsFactory $factoryMock */
-        $factoryMock = $this->mock(AchievementsFactory::class, function(MockInterface $mock) {
-            $mock
-                ->shouldReceive('create')
-                ->andReturn($this->lessonsAchievementMocked($this->array));
+        $this->service = app(AchievementService::class);
 
-            $mock
-                ->shouldReceive('insert')
-                ->with( $this->lessonsAchievementMocked($this->array), 6)
-                ->andReturn($this->lessonsAchievementMocked([1,2,3,4,5,6]));
-        });
-
-        /** @var EntityHelperActions $actionMock */
-        $actionMock = $this->mock(EntityHelperActions::class, function(MockInterface $mock){
-            $mock
-                ->shouldReceive('previousAchievements')
-                ->with( $this->lessonsAchievementMocked($this->array), 5)
-                ->andReturn($this->lessonsAchievementMocked([1,2,3,4,5]));
-
-            $mock
-                ->shouldReceive('nextEntityValue')
-                ->with( $this->lessonsAchievementMocked($this->array),2)
-                ->andReturn(3);
-
-            $mock
-                ->shouldReceive('convertEntitiesToArray')
-                ->with( $this->lessonsAchievementMocked($this->array))
-                ->andReturn($this->array);
-        });
-
-        $this->service = new LessonsService($factoryMock, $actionMock);
-
-        $this->service->init();
+        $this->service->achievements = $this->lessonsAchievementMocked([1,2,3,4,5]);
     }
 
     /** @test */
@@ -82,11 +48,9 @@ class AchievementServiceTest extends TestCase
     /** @test */
     public function can_retrieve_previous_achievements()
     {
-        $lessons =  $this->lessonsAchievementMocked([1,2,3,4,5]);
-
         $response = $this->service->getPreviousAchievements(5);
 
-        $this->assertEquals($lessons, $response);
+        $this->assertEquals([1,2,3,4,5], $response);
     }
 
     /** @test */

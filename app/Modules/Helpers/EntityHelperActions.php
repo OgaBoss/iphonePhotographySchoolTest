@@ -44,7 +44,7 @@ class EntityHelperActions
             $possibleAchievement = $this->checkForPossibleAchievement($values, $count);
         }
 
-        if ($possibleAchievement < 0) return $possibleAchievement;
+        if ($possibleAchievement < 0) return -1;
 
         $index = array_search($possibleAchievement, $values);
 
@@ -60,14 +60,13 @@ class EntityHelperActions
     {
         $values = $this->convertEntitiesToArray($achievements);
 
-
         $possibleAchievement = $count;
 
         if (!in_array($count, $values)){
             $possibleAchievement = $this->checkForPossibleAchievement($values, $count);
         }
 
-        if ($possibleAchievement < 0) return $possibleAchievement;
+        if ($possibleAchievement < 0) return -1;
 
         $index = array_search($possibleAchievement, $values);
 

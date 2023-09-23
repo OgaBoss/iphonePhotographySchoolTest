@@ -3,9 +3,7 @@
 namespace Tests\Unit;
 
 use App\Events\CommentWritten;
-use App\Events\LessonWatched;
 use App\Models\Comment;
-use App\Models\Lesson;
 use App\Models\User;
 use App\Modules\Achievement\Events\AchievementUnlocked;
 use App\Modules\Achievement\Listeners\HandleCommentWritten;
@@ -21,7 +19,8 @@ class HandleCommentWrittenTest extends TestCase
     {
         parent::setUp();
 
-        config()->set('achievements.comments', $this->array);
+        config()->set('achievements.lessons', [1, 5, 10, 25, 50]);
+        config()->set('achievements.comments', [1, 3, 5, 10, 20]);
 
         $this->commentWritten = app(HandleCommentWritten::class);
     }

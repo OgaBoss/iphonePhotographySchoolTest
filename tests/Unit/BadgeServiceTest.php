@@ -2,14 +2,12 @@
 
 namespace Tests\Unit;
 
-use App\Modules\Badge\Factory\BadgeFactory;
 use App\Modules\Badge\Service\BadgeService;
-use App\Modules\Helpers\EntityHelperActions;
-use Mockery\MockInterface;
 use Tests\TestCase;
 
 class BadgeServiceTest extends TestCase
 {
+
     public array $array = [
         [
             "value" => 0,
@@ -61,38 +59,7 @@ class BadgeServiceTest extends TestCase
 
         config()->set('badges.badges', $this->array);
 
-        /** @var BadgeFactory $factoryMock */
-        $factoryMock = $this->mock(BadgeFactory::class, function(MockInterface $mock) {
-            $mock
-                ->shouldReceive('create')
-                ->andReturn($this->badgeMocked($this->array));
-
-
-            $mock
-                ->shouldReceive('insert')
-                ->with( $this->badgeMocked($this->array), ["value" => 20, "title" => "Guru"])
-                ->andReturn($this->badgeMocked($this->updateArray));
-        });
-
-        /** @var EntityHelperActions $actionMock */
-        $actionMock = $this->mock(EntityHelperActions::class, function(MockInterface $mock){
-            $mock
-                ->shouldReceive('currentEntityValue')
-                ->with( $this->badgeMocked($this->array), 4)
-                ->andReturn(4);
-
-            $mock
-                ->shouldReceive('nextEntityValue')
-                ->with( $this->badgeMocked($this->array), 4)
-                ->andReturn(8);
-
-            $mock
-                ->shouldReceive('convertEntitiesToArray')
-                ->with( $this->badgeMocked($this->array))
-                ->andReturn([0,4,8,10]);
-        });
-
-        $this->service = new BadgeService($factoryMock, $actionMock);
+        $this->service = app(BadgeService::class);
     }
 
     /** @test */

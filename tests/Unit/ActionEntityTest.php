@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Modules\Shared\Entities\ActionEntity;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ActionEntityTest extends TestCase
 {
