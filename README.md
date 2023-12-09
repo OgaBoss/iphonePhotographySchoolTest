@@ -28,3 +28,7 @@ The app should start running at http://127.0.0.1:8000
 
 Test the api response at http://127.0.0.1:8000/users/1/achievements
 ```
+
+### Response 
+
+<img width="517" alt="Screenshot 2023-12-09 at 10 17 23 PM" src="https://github.com/OgaBoss/iphonePhotographySchoolTest/assets/16806901/3a50da88-0aac-419f-a85e-1f8c820d58e5">
