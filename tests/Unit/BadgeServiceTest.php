@@ -79,7 +79,7 @@ class BadgeServiceTest extends TestCase
     {
         $badges =  $this->badgeMocked($this->updateArray);
 
-        $this->service->setAchievements(["value" => 20, "title" => "Guru"]);
+        $this->service->setBadges(["value" => 20, "title" => "Guru"]);
 
         $this->assertEquals($badges, $this->service->badges);
         $this->assertEquals("Guru", $this->service->badges[4]->title);

@@ -13,7 +13,9 @@ php artisan  app:seed-users-details <Lesson Watched Count> <Comments Written Cou
 
 e.g
 php artisan app:seed-users-details 60 45
+
 This will seed 1 user, 60 watched videos, 45 written comments
+
 The DB is cleared before data is seeded, so there is always only one user in the db.
 ```
 

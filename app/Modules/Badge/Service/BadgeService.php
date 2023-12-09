@@ -43,7 +43,7 @@ class BadgeService
      * @param array $newBadge
      * @return void
      */
-    public function setAchievements(array $newBadge): void
+    public function setBadges(array $newBadge): void
     {
         $this->badges = $this->factory->insert($this->badges, $newBadge);
     }
